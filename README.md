@@ -112,3 +112,7 @@ Sometimes it would be nice to have some global shortcuts to access your program 
         globalShortcut.unregisterAll();
     });
     ```
+
+## Things To Know
+
+Great way to convert images into icons. https://iconverticons.com/online/
