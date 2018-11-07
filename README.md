@@ -86,3 +86,29 @@ function buildTray()
     tray.setToolTip('Electron WIIGF');
 }
 ```
+
+## Gobal Shorcuts
+
+Sometimes it would be nice to have some global shortcuts to access your program even when your application is not in the foreground.
+
+1. Add `globalShortcut` to the list of constants from electron.
+1. Write a little function to call with out shortcut as follows:
+    ```js
+    function getFocus() {
+        console.log('Doing Show Main Window');
+        mainWindow.show();
+    }
+    ```
+1. Register the shortcut as follows: _I built a function to handle this with the signature `function registerShortcuts(globalShortcut)`. Then I called it from inside the `app.on('ready'` handler._
+    ```js
+    globalShortcut.unregisterAll();
+    globalShortcut.register('CmdOrCtrl+Alt+C', _ => {
+        getFocus();
+    });
+    ```
+1. Make sure to follow best practices and cleanup when the application quits.
+    ```js
+    app.on('will-quit', _ => {
+        globalShortcut.unregisterAll();
+    });
+    ```
