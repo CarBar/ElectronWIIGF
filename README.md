@@ -51,3 +51,38 @@
     ```
 1. Create `src\wiigf.html` and add the desired html.
 1. Create `src\wiigf.css` and add the desired styles.
+
+## Add Tray
+
+1. Add `Menu` and `Tray` to the list of constants from electron.
+1. Add path dependency using require `const path = require('path');`
+1. Place a **.png** to be used as the icon in the tray in your `src` folder.
+1. Instantiate with `const tray = new Tray(path.join('src', '<yourIconName>.png'));`
+1. Use `Menu.buildFromTemplate` to build menu options.
+1. Add menu to the tray using `tray.setContextMenu(contextMenu);`
+1. Add tool tip to tray `tray.setTooltip('<something whitty>');`
+
+Building the menu into a function could look something like this.
+
+```js
+function buildTray()
+{
+    const tray = new Tray(path.join('src', 'SingleCupLogo.png'));
+    const contextMenu = Menu.buildFromTemplate([
+        {
+            label: 'Thing 1',
+            click: _ => {
+                console.log('Clicked Thing 1');
+            }
+        },
+        {
+            label: 'Thing 2',
+            click: _ => {
+                console.log('Clicked Thing 2');
+            }
+        }
+    ])
+    tray.setContextMenu(contextMenu);
+    tray.setToolTip('Electron WIIGF');
+}
+```
