@@ -52,7 +52,7 @@ app.on('ready', _ => {
   mainWindow = new BrowserWindow({});
 
   // Load your root html file into the browser window.
-  mainWindow.loadURL(`file://${__dirname}/wiigf.html`);
+  mainWindow.loadURL(`file://${__dirname}/index.html`);
 
   // Cleanup after mainWindow is closed.
   mainWindow.on('closed', _ => {
